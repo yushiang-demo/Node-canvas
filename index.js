@@ -6,6 +6,9 @@ const main = async (inputs, output, width, height, paddingX, paddingY) => {
   const canvas = createCanvas(width, height);
   const ctx = canvas.getContext("2d");
 
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, width,height);
+
   const images = await Promise.all(
     inputs.map((filename) => loadImage(filename))
   );
@@ -15,6 +18,24 @@ const main = async (inputs, output, width, height, paddingX, paddingY) => {
 
   const xBlockOffset = width / row;
   const yBlockOffset = height / col;
+
+  ctx.setLineDash([1, 20]);
+
+  Array.from({ length: col }, (_, index) => index).forEach(index=>{
+    ctx.beginPath();
+    ctx.moveTo(0,index*yBlockOffset);
+    ctx.lineTo(width,index*yBlockOffset);
+    ctx.stroke();
+  });
+
+  Array.from({ length: row }, (_, index) => index).forEach(index=>{
+    ctx.beginPath();
+    ctx.moveTo(index*xBlockOffset,0);
+    ctx.lineTo(index*xBlockOffset, height);
+    ctx.stroke();
+  });
+
+
 
   const blockWidth = xBlockOffset - paddingX;
   const blockHeight = yBlockOffset - paddingY;
