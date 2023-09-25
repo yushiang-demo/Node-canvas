@@ -1,0 +1,9 @@
+{
+  "name": "node-canvas",
+  "version": "1.0.0",
+  "main": "./index.js",
+  "dependencies": {
+    "canvas": "^2.11.2",
+    "commander": "^11.0.0"
+  }
+}
