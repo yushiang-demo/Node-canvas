@@ -1,6 +1,4 @@
 # Node-canvas
-export image grid
-
 
 ## Quick start
 
